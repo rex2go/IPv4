@@ -48,7 +48,7 @@ public class Main {
             try {
                 int val = Integer.parseInt(valStr);
 
-                if (val > from && val <= to) return val;
+                if (val >= from && val <= to) return val;
             } catch (NumberFormatException ignored) {
             }
         }
