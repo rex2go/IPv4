@@ -9,17 +9,6 @@ public class Main {
         main.init();
     }
 
-    private static Address promptAddress(Scanner scanner, String message) {
-        while (true) {
-            System.out.print(message);
-            Address address = new Address(scanner.nextLine());
-
-            if (address.isValid()) {
-                return address;
-            }
-        }
-    }
-
     private void init() {
         Scanner scanner = new Scanner(System.in);
         IPv4 iPv4 = new IPv4();
@@ -50,6 +39,17 @@ public class Main {
 
                 if (val >= from && val <= to) return val;
             } catch (NumberFormatException ignored) {
+            }
+        }
+    }
+
+    private Address promptAddress(Scanner scanner, String message) {
+        while (true) {
+            System.out.print(message);
+            Address address = new Address(scanner.nextLine());
+
+            if (address.isValid()) {
+                return address;
             }
         }
     }
