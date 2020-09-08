@@ -36,6 +36,8 @@ public class Main {
         System.out.println(taskA);
         System.out.println(taskB);
         System.out.println(taskC);
+
+        scanner.close();
     }
 
     private int prompt(Scanner scanner, String message, int from, int to) {
