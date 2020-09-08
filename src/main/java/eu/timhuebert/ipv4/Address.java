@@ -1,12 +1,10 @@
 package eu.timhuebert.ipv4;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
+@Data
 public class Address {
 
-    @Getter
-    @Setter
     private String address;
 
     public Address(String ip) {
