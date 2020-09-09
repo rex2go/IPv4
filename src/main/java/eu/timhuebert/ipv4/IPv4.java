@@ -44,62 +44,51 @@ public class IPv4 {
         String[] parts = binary.split("(?<=\\G........)");
         StringBuilder ip = new StringBuilder();
 
-        for (String part : parts) {
-            int part1 = Integer.parseInt(part, 2);
-            ip.append(part1).append(".");
-        }
+        for (String part : parts) ip.append(Integer.parseInt(part, 2)).append(".");
 
         ip.setLength(ip.length() - 1);
         return new Address(ip.toString());
     }
 
     public String taskA() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(version).append("-");
-        stringBuilder.append(IHL).append("-");
-        stringBuilder.append(TOS).append("-");
-        stringBuilder.append(totalLength).append("-");
-        stringBuilder.append(identification).append("-");
-
-        StringBuilder flags = new StringBuilder(String.valueOf(this.flags));
-        while (flags.length() < 3) {
-            flags.insert(0, "0");
-        }
-
-        stringBuilder.append(flags.toString()).append("-");
-        stringBuilder.append(fragmentOffset).append("-");
-        stringBuilder.append(TTL).append("-");
-        stringBuilder.append(protocol).append("-");
-        stringBuilder.append(headerChecksum).append("-");
-        stringBuilder.append(sourceAddress.toString()).append("-");
-        stringBuilder.append(destinationAddress.toString());
-
-        return stringBuilder.toString();
+        return String.format(
+                "%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s",
+                version,
+                IHL,
+                TOS,
+                totalLength,
+                identification,
+                flags,
+                fragmentOffset,
+                TTL,
+                protocol,
+                headerChecksum,
+                sourceAddress.toString(),
+                destinationAddress.toString()
+        );
     }
 
     public String taskB() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(toBinaryString(version, 4)).append(" ");
-        stringBuilder.append(toBinaryString(IHL, 4)).append(" ");
-        stringBuilder.append(toBinaryString(TOS, 8)).append(" ");
-        stringBuilder.append(toBinaryString(totalLength, 16)).append(" ");
-        stringBuilder.append(toBinaryString(identification, 16)).append(" ");
-        stringBuilder.append(toBinaryString(flags, 3)).append(" ");
-        stringBuilder.append(toBinaryString(fragmentOffset, 13)).append(" ");
-        stringBuilder.append(toBinaryString(TTL, 8)).append(" ");
-        stringBuilder.append(toBinaryString(protocol, 8)).append(" ");
-        stringBuilder.append(toBinaryString(headerChecksum, 16)).append(" ");
-
-        stringBuilder.append(sourceAddress.toBinaryString()).append(" ");
-        stringBuilder.append(destinationAddress.toBinaryString());
-
-        return stringBuilder.toString();
+        return String.format(
+                "%s %s %s %s %s %s %s %s %s %s %s %s",
+                toBinaryString(version, 4),
+                toBinaryString(IHL, 4),
+                toBinaryString(TOS, 8),
+                toBinaryString(totalLength, 16),
+                toBinaryString(identification, 16),
+                toBinaryString(flags, 3),
+                toBinaryString(fragmentOffset, 13),
+                toBinaryString(TTL, 8),
+                toBinaryString(protocol, 8),
+                toBinaryString(headerChecksum, 16),
+                sourceAddress.toBinaryString(),
+                destinationAddress.toBinaryString()
+        );
     }
 
     private String toBinaryString(int i, int bits) {
         StringBuilder binary = new StringBuilder(Integer.toBinaryString(i));
+
         while (binary.length() < bits) {
             binary.insert(0, "0");
         }
