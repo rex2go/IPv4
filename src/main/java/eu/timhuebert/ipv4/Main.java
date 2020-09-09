@@ -22,9 +22,9 @@ public class Main {
         String taskB = iPv4.taskB();
         IPv4 taskC = iPv4.taskC(taskB);
 
-        System.out.println(taskA);
-        System.out.println(taskB);
-        System.out.println(taskC);
+        System.out.println("Aufgabe A: " + taskA);
+        System.out.println("Aufgabe B: " + taskB);
+        System.out.println("Aufgabe C: " + taskC);
 
         scanner.close();
     }
@@ -38,7 +38,10 @@ public class Main {
                 int val = Integer.parseInt(valStr);
 
                 if (val >= from && val <= to) return val;
-            } catch (NumberFormatException ignored) {
+
+                System.err.println("Ungültige Eingabe: Der Wert muss zwischen 0 und 255 liegen.");
+            } catch (NumberFormatException exception) {
+                System.err.println("Ungültige Eingabe: Der eingegebene Wert darf nur aus Zahlen bestehen.");
             }
         }
     }
@@ -49,6 +52,8 @@ public class Main {
             Address address = new Address(scanner.nextLine());
 
             if (address.isValid()) return address;
+
+            System.err.println("Ungültige Eingabe: Die IP-Adresse ist ungültig.");
         }
     }
 }
