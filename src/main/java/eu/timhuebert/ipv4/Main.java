@@ -48,9 +48,7 @@ public class Main {
             System.out.print(message);
             Address address = new Address(scanner.nextLine());
 
-            if (address.isValid()) {
-                return address;
-            }
+            if (address.isValid()) return address;
         }
     }
 }
