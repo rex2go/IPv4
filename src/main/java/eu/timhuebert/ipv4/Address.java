@@ -23,9 +23,7 @@ public class Address {
         for (String part : parts) {
             StringBuilder binary = new StringBuilder(Integer.toBinaryString(Integer.parseInt(part)));
 
-            while (binary.length() < 8) {
-                binary.insert(0, "0");
-            }
+            while (binary.length() < 8) binary.insert(0, "0");
 
             stringBuilder.append(binary);
         }

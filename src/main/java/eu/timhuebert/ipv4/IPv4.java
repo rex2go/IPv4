@@ -89,9 +89,7 @@ public class IPv4 {
     private String toBinaryString(int i, int bits) {
         StringBuilder binary = new StringBuilder(Integer.toBinaryString(i));
 
-        while (binary.length() < bits) {
-            binary.insert(0, "0");
-        }
+        while (binary.length() < bits) binary.insert(0, "0");
 
         return binary.toString();
     }
