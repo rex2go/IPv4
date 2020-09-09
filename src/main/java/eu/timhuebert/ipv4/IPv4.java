@@ -20,10 +20,14 @@ public class IPv4 {
 
     public void calculateHeaderLength() {
         IHL = toBinaryString().length() / 32; // no data
+
+        System.out.println("IHL: " + IHL);
     }
 
     public void calculateLength() {
         totalLength = toBinaryString().length() / 32;
+
+        System.out.println("Total Length: " + totalLength);
     }
 
     public void calculateChecksum() {
@@ -39,6 +43,8 @@ public class IPv4 {
         sumStr = sumStr.replace('0', '2').replace('1', '0').replace('2', '1'); // flip
 
         headerChecksum = Integer.parseInt(sumStr, 2); // convert to dec
+
+        System.out.println("Header Checksum: " + headerChecksum);
     }
 
     public String taskA() {
