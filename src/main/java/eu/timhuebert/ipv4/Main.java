@@ -20,7 +20,7 @@ public class Main {
 
         String taskA = iPv4.taskA();
         String taskB = iPv4.taskB();
-        IPv4 taskC = IPv4.taskC(taskB);
+        IPv4 taskC = iPv4.taskC(taskB);
 
         System.out.println(taskA);
         System.out.println(taskB);
