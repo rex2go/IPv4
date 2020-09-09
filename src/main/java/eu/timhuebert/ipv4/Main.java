@@ -18,6 +18,10 @@ public class Main {
         iPv4.setSourceAddress(promptAddress(scanner, "Source Address > "));
         iPv4.setDestinationAddress(promptAddress(scanner, "Destination Address > "));
 
+        iPv4.calculateHeaderLength();
+        iPv4.calculateLength();
+        iPv4.calculateChecksum();
+
         String taskA = iPv4.taskA();
         String taskB = iPv4.taskB();
         IPv4 taskC = iPv4.taskC(taskB);

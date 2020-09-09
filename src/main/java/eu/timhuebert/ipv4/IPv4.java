@@ -6,9 +6,9 @@ import lombok.Data;
 public class IPv4 {
 
     private int version = 4;
-    private int IHL = 6;
+    private int IHL = 0;
     private int TOS;
-    private int totalLength = 6;
+    private int totalLength = 0;
     private int identification = 0;
     private int flags = 0;
     private int fragmentOffset = 0;
@@ -17,6 +17,29 @@ public class IPv4 {
     private int headerChecksum = 0;
     private Address sourceAddress;
     private Address destinationAddress;
+
+    public void calculateHeaderLength() {
+        IHL = toBinaryString().length() / 32; // no data
+    }
+
+    public void calculateLength() {
+        totalLength = toBinaryString().length() / 32;
+    }
+
+    public void calculateChecksum() {
+        String binary = toBinaryString();
+        String[] parts = binary.split("(?<=\\G................)"); // 16 bit blocks
+        int sum = 0;
+
+        for (String part : parts) {
+            sum += Integer.parseInt(part, 2); // sum up all blocks
+        }
+
+        String sumStr = Integer.toString(sum, 2); // convert to binary
+        sumStr = sumStr.replace('0', '2').replace('1', '0').replace('2', '1'); // flip
+
+        headerChecksum = Integer.parseInt(sumStr, 2); // convert to dec
+    }
 
     public String taskA() {
         return String.format(
@@ -92,6 +115,26 @@ public class IPv4 {
         while (binary.length() < bits) binary.insert(0, "0");
 
         return binary.toString();
+    }
+
+    public String toBinaryString() {
+        String binary = String.format(
+                "%s%s%s%s%s%s%s%s%s%s%s%s",
+                toBinaryString(version, 4),
+                toBinaryString(IHL, 4),
+                toBinaryString(TOS, 8),
+                toBinaryString(totalLength, 16),
+                toBinaryString(identification, 16),
+                toBinaryString(flags, 3),
+                toBinaryString(fragmentOffset, 13),
+                toBinaryString(TTL, 8),
+                toBinaryString(protocol, 8),
+                toBinaryString(0, 16),
+                sourceAddress.toBinaryString(),
+                destinationAddress.toBinaryString()
+        );
+
+        return binary;
     }
 
     @Override
