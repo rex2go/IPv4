@@ -43,7 +43,8 @@ public class Main {
 
                 if (val >= from && val <= to) return val;
 
-                System.err.println("Ungültige Eingabe: Der Wert muss zwischen 0 und 255 liegen.");
+                System.err.println(String.format("Ungültige Eingabe: Der Wert muss zwischen %s und %s liegen.", from,
+                        to));
             } catch (NumberFormatException exception) {
                 System.err.println("Ungültige Eingabe: Der eingegebene Wert darf nur aus Zahlen bestehen.");
             }
