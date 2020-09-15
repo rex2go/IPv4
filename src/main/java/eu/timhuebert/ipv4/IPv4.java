@@ -55,7 +55,7 @@ public class IPv4 {
                 TOS,
                 totalLength,
                 identification,
-                flags,
+                toBinaryString(flags, 3),
                 fragmentOffset,
                 TTL,
                 protocol,
