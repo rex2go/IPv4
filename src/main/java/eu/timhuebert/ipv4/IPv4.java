@@ -10,7 +10,7 @@ public class IPv4 {
     private int TOS;
     private int totalLength = 0;
     private int identification = 0;
-    private int flags = 0;
+    private int flags = 0b000;
     private int fragmentOffset = 0;
     private int TTL;
     private int protocol = 0;
